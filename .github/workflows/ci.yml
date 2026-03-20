@@ -1,0 +1,34 @@
+#Inicio de yml
+name: CI Pipeline #nombre del flujo completo
+
+#acciones que ejecutan el archivo, cuando se haga cualquier pull request o se haga un push a la rama develop
+on:
+  pull_request:
+  push:
+    branches:
+      - develop
+
+#os jobs son trabajos a ejecutar
+jobs:
+  front-build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - name: Checkout repository (git clone)
+        uses: actions/checkout@v4 #Es lo mismo que hacer un git clone a la carpeta frontend del repositorio
+      
+      - name: Setup node (instalar node)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar las dependencias
+        run: npm install
+
+      - name: Construir la aplicacion
+        run: npm run build 
+

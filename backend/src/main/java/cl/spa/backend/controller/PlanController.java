@@ -1,20 +1,14 @@
-package cl.spa.backend.controller;
+package cl.SPA.backend.controller;
 
-import cl.spa.backend.model.Plan;
-import cl.spa.backend.repository.PlanRepository;
+import cl.SPA.backend.model.Plan;
+import cl.SPA.backend.repository.PlanRepository;
 import java.util.List;
 import org.springframework.web.bind.annotation.*;
-
-/**
- *
- * @author Duoc
- */
 
 @RestController
 @RequestMapping("/api/planes")
 @CrossOrigin("*")
 public class PlanController {
-
     private final PlanRepository repository;
 
     public PlanController(PlanRepository repository) {
@@ -25,6 +19,5 @@ public class PlanController {
     public List<Plan> getPlanes(){
         return repository.findAll();
     }
-    
     
 }

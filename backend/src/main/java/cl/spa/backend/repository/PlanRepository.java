@@ -1,12 +1,9 @@
-package cl.spa.backend.repository;
+package cl.SPA.backend.repository;
 
-import cl.spa.backend.model.Plan;
+import cl.SPA.backend.model.Plan;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-/**
- *
- * @author Duoc
- */
+
 public interface PlanRepository extends JpaRepository<Plan, Long>{
     
 }

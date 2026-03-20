@@ -1,16 +1,11 @@
-package cl.spa.backend.model;
+
+package cl.SPA.backend.model;
 
 import jakarta.persistence.*;
 
-/**
- *
- * @author Duoc
- */
-
 @Entity
-@Table(name = "plan")
+@Table(name="Plan")
 public class Plan {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -59,6 +54,5 @@ public class Plan {
         this.precio = precio;
     }
     
-    
-    
+     
 }

@@ -1,4 +1,4 @@
-package cl.spa.backend;
+package cl.SPA.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package cl.spa.backend;
+package cl.SPA.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
