@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4 #Es lo mismo que hacer un git clone a la carpeta frontend del repositorio
       
       - name: Setup node (instalar node)
-      - uses: actions/setup-node@v4
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
