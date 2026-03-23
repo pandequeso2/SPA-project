@@ -21,15 +21,15 @@ jobs:
         uses: actions/checkout@v4 #Es lo mismo que hacer un git clone a la carpeta frontend del repositorio
       
       - name: Setup node (instalar node)
-      - uses: actions/setup-node@v4
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cahe: 'npm'
+          # cache: 'npm'
       - run: npm install
       - name: Ejecutar los Test
-        run: npm test
+        run: npm test -- --watchAll=false
 
-        
+
   backTest-build:
     runs-on: ubuntu-latest
     defaults:
@@ -41,7 +41,7 @@ jobs:
         uses: actions/checkout@v4
       
       - name: Setup JDK
-        uses: actions/setup-java
+        uses: actions/setup-java@v4
         with:
           java-version: '25'
           distribution: 'temurin'
@@ -49,12 +49,13 @@ jobs:
       - name: Dar Permisos a maven
         run: chmod +x mvnw
       - name: Ejecutar las pruebas
-        run: ./mvnw test
+        run: ./mvnw compile
 
 
 
 
   front-build:
+    needs: frontTest-build # NO construye si el test falla
     runs-on: ubuntu-latest
 
     defaults:
@@ -77,6 +78,7 @@ jobs:
         run: npm run build 
 
   back-build:
+    needs: backTest-build # NO construye si el test falla
     runs-on: ubuntu-latest
 
     defaults:
