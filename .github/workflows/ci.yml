@@ -43,11 +43,11 @@ jobs:
       - name: Checkout repository (git clone)
         uses: actions/checkout@v4
 
-      - name: Setup JDK (Java) 21 #depende de la version de java del computador
+      - name: Setup JDK (Java) 25 #depende de la version de java del computador
         uses: actions/setup-java@v4
         #Paso extra, verificar que instale la version 21 d java
         with:
-          java-version: '21'
+          java-version: '25'
           distribution: 'temurin' #distribuidora de maven
           cache: 'maven'
       - name: Dar permisos a maven de ejecucion #en ubuntu maven nesesita permisos para ejecutar el proyecto
