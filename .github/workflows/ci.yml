@@ -10,6 +10,50 @@ on:
 
 #os jobs son trabajos a ejecutar
 jobs:
+  frontTest-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - name: Checkout repository (git clone)
+        uses: actions/checkout@v4 #Es lo mismo que hacer un git clone a la carpeta frontend del repositorio
+      
+      - name: Setup node (instalar node)
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cahe: 'npm'
+      - run: npm install
+      - name: Ejecutar los Test
+        run: npm test
+
+        
+  backTest-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup JDK
+        uses: actions/setup-java
+        with:
+          java-version: '25'
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Dar Permisos a maven
+        run: chmod +x mvnw
+      - name: Ejecutar las pruebas
+        run: ./mvnw test
+
+
+
+
   front-build:
     runs-on: ubuntu-latest
 
@@ -31,4 +75,28 @@ jobs:
 
       - name: Construir la aplicacion
         run: npm run build 
+
+  back-build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: backend
+    
+    steps:
+      - name: Checkout repository (git clone)
+        uses: actions/checkout@v4
+
+      - name: Setup JDK (Java) 25 #depende de la version de java del computador
+        uses: actions/setup-java@v4
+        #Paso extra, verificar que instale la version 21 d java
+        with:
+          java-version: '25'
+          distribution: 'temurin' #distribuidora de maven
+          cache: 'maven'
+      - name: Dar permisos a maven de ejecucion #en ubuntu maven nesesita permisos para ejecutar el proyecto
+        run: chmod +x mvnw
+
+      - name: Construir la aplicación
+        run: ./mvnw clean package -DskipTests
 
